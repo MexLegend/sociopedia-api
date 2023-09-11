@@ -2,7 +2,6 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start:dev": "cross-env NODE_ENV=dev nodemon npm run build && node build/index.js",
-    "start:prod": "node src/index",
     "build": "rimraf ./build && tsc",
     "start": "npm run build && node build/index.js"
   },
