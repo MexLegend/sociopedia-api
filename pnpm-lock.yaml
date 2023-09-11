@@ -5,6 +5,9 @@ settings:
   excludeLinksFromLockfile: false
 
 dependencies:
+  '@types/body-parser':
+    specifier: ^1.19.2
+    version: 1.19.2
   bcrypt:
     specifier: ^5.1.0
     version: 5.1.0

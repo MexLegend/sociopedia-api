@@ -19,9 +19,6 @@ export default class Database {
   start(): void {
     const db: any = process.env.DB;
 
-    console.log(db);
-    
-
     // Se indica que la conexión será mediante Promesas
     mongoose.Promise = global.Promise;
 
