@@ -1,17 +1,18 @@
-import { Types } from 'mongoose';
-
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.posts = exports.users = void 0;
+const mongoose_1 = require("mongoose");
 const userIds = [
-    new Types.ObjectId(),
-    new Types.ObjectId(),
-    new Types.ObjectId(),
-    new Types.ObjectId(),
-    new Types.ObjectId(),
-    new Types.ObjectId(),
-    new Types.ObjectId(),
-    new Types.ObjectId(),
+    new mongoose_1.Types.ObjectId(),
+    new mongoose_1.Types.ObjectId(),
+    new mongoose_1.Types.ObjectId(),
+    new mongoose_1.Types.ObjectId(),
+    new mongoose_1.Types.ObjectId(),
+    new mongoose_1.Types.ObjectId(),
+    new mongoose_1.Types.ObjectId(),
+    new mongoose_1.Types.ObjectId(),
 ];
-
-export const users = [
+exports.users = [
     {
         _id: userIds[0],
         firstName: "test",
@@ -19,7 +20,7 @@ export const users = [
         email: "aaaaaaa@gmail.com",
         password: "$2b$10$dsasdgsagasda//G9JxQ4bQ8KXf4OAIe/X/AK9skyWUy",
         imgPath: "p11.jpeg",
-        friends: [] as string[],
+        friends: [],
         location: "San Fran, CA",
         occupation: "Software Engineer",
         viewedProfile: 14561,
@@ -35,7 +36,7 @@ export const users = [
         email: "thataaa@gmail.com",
         password: "$!FEAS@!O)_IDJda//G9JxQ4bQ8KXf4OAIe/X/AK9skyWUy",
         imgPath: "p3.jpeg",
-        friends: [] as string[],
+        friends: [],
         location: "New York, CA",
         occupation: "Degenerate",
         viewedProfile: 12351,
@@ -51,7 +52,7 @@ export const users = [
         email: "someguy@gmail.com",
         password: "da39a3ee5e6b4b0d3255bfef95601890afd80709",
         imgPath: "p4.jpeg",
-        friends: [] as string[],
+        friends: [],
         location: "Canada, CA",
         occupation: "Data Scientist Hacker",
         viewedProfile: 45468,
@@ -67,7 +68,7 @@ export const users = [
         email: "whatchadoing@gmail.com",
         password: "$2b$10$dsasdgsagasda//G9JxQ4bQ8KXf4OAIe/X/AK9skyWUy",
         imgPath: "p6.jpeg",
-        friends: [] as string[],
+        friends: [],
         location: "Korea, CA",
         occupation: "Educator",
         viewedProfile: 41024,
@@ -83,7 +84,7 @@ export const users = [
         email: "janedoe@gmail.com",
         password: "$2b$10$dsasdgsagasda//G9JxQ4bQ8KXf4OAIe/X/AK9skyWUy",
         imgPath: "p5.jpeg",
-        friends: [] as string[],
+        friends: [],
         location: "Utah, CA",
         occupation: "Hacker",
         viewedProfile: 40212,
@@ -99,7 +100,7 @@ export const users = [
         email: "harveydunn@gmail.com",
         password: "$2b$10$dsasdgsagasda//G9JxQ4bQ8KXf4OAIe/X/AK9skyWUy",
         imgPath: "p7.jpeg",
-        friends: [] as string[],
+        friends: [],
         location: "Los Angeles, CA",
         occupation: "Journalist",
         viewedProfile: 976,
@@ -115,7 +116,7 @@ export const users = [
         email: "carlyvowel@gmail.com",
         password: "$2b$10$dsasdgsagasda//G9JxQ4bQ8KXf4OAIe/X/AK9skyWUy",
         imgPath: "p8.jpeg",
-        friends: [] as string[],
+        friends: [],
         location: "Chicago, IL",
         occupation: "Nurse",
         viewedProfile: 1510,
@@ -131,7 +132,7 @@ export const users = [
         email: "jessicadunn@gmail.com",
         password: "$2b$10$dsasdgsagasda//G9JxQ4bQ8KXf4OAIe/X/AK9skyWUy",
         imgPath: "p9.jpeg",
-        friends: [] as string[],
+        friends: [],
         location: "Washington, DC",
         occupation: "A Student",
         viewedProfile: 19420,
@@ -141,10 +142,9 @@ export const users = [
         __v: 0,
     },
 ];
-
-export const posts = [
+exports.posts = [
     {
-        _id: new Types.ObjectId(),
+        _id: new mongoose_1.Types.ObjectId(),
         userId: userIds[1],
         firstName: "Steve",
         lastName: "Ralph",
@@ -165,13 +165,12 @@ export const posts = [
         ],
     },
     {
-        _id: new Types.ObjectId(),
+        _id: new mongoose_1.Types.ObjectId(),
         userId: userIds[3],
         firstName: "Whatcha",
         lastName: "Doing",
         location: "Korea, CA",
-        description:
-            "Another really long random description. This one is longer than the previous one.",
+        description: "Another really long random description. This one is longer than the previous one.",
         imgPath: "post2.jpeg",
         userImgPath: "p6.jpeg",
         likes: new Map([
@@ -188,13 +187,12 @@ export const posts = [
         ],
     },
     {
-        _id: new Types.ObjectId(),
+        _id: new mongoose_1.Types.ObjectId(),
         userId: userIds[4],
         firstName: "Jane",
         lastName: "Doe",
         location: "Utah, CA",
-        description:
-            "This is the last really long random description. This one is longer than the previous one.",
+        description: "This is the last really long random description. This one is longer than the previous one.",
         imgPath: "post3.jpeg",
         userImgPath: "p5.jpeg",
         likes: new Map([
@@ -212,13 +210,12 @@ export const posts = [
         ],
     },
     {
-        _id: new Types.ObjectId(),
+        _id: new mongoose_1.Types.ObjectId(),
         userId: userIds[5],
         firstName: "Harvey",
         lastName: "Dunn",
         location: "Los Angeles, CA",
-        description:
-            "This is the last really long random description. This one is longer than the previous one. Man I'm bored. I'm going to keep typing until I run out of things to say.",
+        description: "This is the last really long random description. This one is longer than the previous one. Man I'm bored. I'm going to keep typing until I run out of things to say.",
         imgPath: "post4.jpeg",
         userImgPath: "p7.jpeg",
         likes: new Map([
@@ -236,13 +233,12 @@ export const posts = [
         ],
     },
     {
-        _id: new Types.ObjectId(),
+        _id: new mongoose_1.Types.ObjectId(),
         userId: userIds[6],
         firstName: "Carly",
         lastName: "Vowel",
         location: "Chicago, IL",
-        description:
-            "Just a short description. I'm tired of typing. I'm going to play video games now.",
+        description: "Just a short description. I'm tired of typing. I'm going to play video games now.",
         imgPath: "post5.jpeg",
         userImgPath: "p8.jpeg",
         likes: new Map([
@@ -260,20 +256,18 @@ export const posts = [
         ],
     },
     {
-        _id: new Types.ObjectId(),
+        _id: new mongoose_1.Types.ObjectId(),
         userId: userIds[7],
         firstName: "Jessica",
         lastName: "Dunn",
         location: "Washington, DC",
-        description:
-            "For the last time, I'm going to play video games now. I'm tired of typing. I'm going to play video games now.",
+        description: "For the last time, I'm going to play video games now. I'm tired of typing. I'm going to play video games now.",
         imgPath: "post6.jpeg",
         userImgPath: "p9.jpeg",
         likes: new Map([
             [userIds[1], true],
             [userIds[2], true],
         ]),
-
         comments: [
             "Can I play video games now?",
             "No let's actually study",
@@ -283,3 +277,4 @@ export const posts = [
         ],
     },
 ];
+//# sourceMappingURL=index.js.map
