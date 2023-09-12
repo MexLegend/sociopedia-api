@@ -69,6 +69,7 @@ class UserController {
             res.status(404).json({ message: err.message, ok: false });
         }
     }
+
 }
 
 const userController = new UserController();

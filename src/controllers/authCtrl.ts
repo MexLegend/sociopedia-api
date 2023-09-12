@@ -40,6 +40,10 @@ class AuthController {
             res.status(201).json({ ok: true, savedUser });
 
         } catch (err: any) {
+
+            console.log(err);
+            
+
             res.status(500).json({ error: err.message, ok: false });
         }
     }

@@ -1,15 +1,14 @@
 import express, { Application } from 'express';
-import bodyParser from "body-parser";
 import cors from "cors";
 import dotenv from "dotenv";
-import multer, { Multer, diskStorage } from "multer";
-import helmet from "helmet";
-import morgan from "morgan";
 import http from 'http';
+import { v2 } from 'cloudinary';
+import bodyParser from 'body-parser';
 import { join } from 'path';
 
 // Routes
 import authRoutes from '../routes/authRts';
+import cloudinaryRoutes from '../routes/cloudinaryRts';
 import userRoutes from '../routes/userRts';
 import postRoutes from '../routes/postRts';
 
@@ -26,14 +25,12 @@ export default class Server {
 
     private httpServer: http.Server;
 
-    private upload: Multer;
-
     private constructor() {
         this.app = express();
         this.httpServer = new http.Server(this.app);
-        this.upload = this.fileStorage();
 
         this.config();
+        this.configCloudinary();
         this.routes();
         this.routesWithFiles();
     }
@@ -45,47 +42,33 @@ export default class Server {
     config(): void {
         dotenv.config();
         this.app.use(cors({ origin: true, credentials: true }));
-        this.app.use(express.urlencoded({ extended: true }));
-        this.app.use(express.json());
-        this.app.use(helmet());
-        this.app.use(helmet.crossOriginResourcePolicy({ policy: "cross-origin" }));
-        this.app.use(morgan("common"));
-        this.app.use(bodyParser.json({ limit: "30mb" }));
-        this.app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }));
-        this.app.use('/assets', express.static(join(__dirname, '../public/assets')));
+        this.app.use(express.json({ limit: '20mb' }));
+        this.app.use(express.urlencoded({ extended: true, limit: '20mb' }));
+        this.app.use(bodyParser.json({ limit: "20mb" }));
+        this.app.use(bodyParser.urlencoded({ limit: "20mb", extended: true }));
+        this.app.use(express.static(join(__dirname, '../public')));
     }
-
-    fileStorage(): Multer {
-        const storage = diskStorage({
-            destination: function (req, file, cb) {
-                cb(null, "./src/public/assets");
-            },
-            filename: function (req, file, cb) {
-                const fileName = file.originalname.toLowerCase().split(' ').join('-');
-                cb(null, fileName);
-            },
+    
+    configCloudinary(): void {
+        v2.config({
+          cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+          api_key: process.env.CLOUDINARY_API_KEY,
+          api_secret: process.env.CLOUDINARY_API_SECRET
         });
-        return multer({
-            storage, fileFilter: (req, file, cb) => {
-                if (file.mimetype == "image/png" || file.mimetype == "image/jpg" || file.mimetype == "image/jpeg") {
-                    cb(null, true);
-                } else {
-                    cb(null, false);
-                    return cb(new Error('Only .png, .jpg and .jpeg format allowed!'));
-                }
-            }
-        });
-    }
+      }
 
     routes(): void {
         this.app.use('/api/auth', authRoutes);
+        this.app.use('/api/cloudinary', cloudinaryRoutes);
         this.app.use('/api/users', userRoutes);
         this.app.use('/api/posts', postRoutes);
+        this.app.post('/api/auth/register', authController.register);
+        this.app.post('/api/posts', [AUTH.verifyToken], postController.createPost);
     }
 
     routesWithFiles(): void {
-        this.app.post('/api/auth/register', this.upload.single("imgFile"), authController.register);
-        this.app.post('/api/posts', [AUTH.verifyToken], this.upload.single("imgFile"), postController.createPost);
+        this.app.post('/api/auth/register', authController.register);
+        this.app.post('/api/posts', [AUTH.verifyToken], postController.createPost);
     }
 
     start(): void {

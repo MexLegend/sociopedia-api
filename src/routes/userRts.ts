@@ -18,6 +18,9 @@ class UserRoutes {
 
         // UPDATE
         this.router.patch('/:id/:friendId', [AUTH.verifyToken], userController.addRemoveFriend);
+
+         // DELETE
+         this.router.delete('', userController.addRemoveFriend);
     }
 }
 
