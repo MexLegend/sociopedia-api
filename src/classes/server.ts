@@ -62,8 +62,6 @@ export default class Server {
         this.app.use('/api/cloudinary', cloudinaryRoutes);
         this.app.use('/api/users', userRoutes);
         this.app.use('/api/posts', postRoutes);
-        this.app.post('/api/auth/register', authController.register);
-        this.app.post('/api/posts', [AUTH.verifyToken], postController.createPost);
     }
 
     routesWithFiles(): void {

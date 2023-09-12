@@ -67,6 +67,7 @@ class AuthController {
             res.status(201).json({ ok: true, token, user: userWitoutPassword });
 
         } catch (err: any) {
+
             res.status(500).json({ error: err.message, ok: false });
         }
     }
