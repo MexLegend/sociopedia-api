@@ -41,21 +41,21 @@ export default class Server {
 
     config(): void {
         dotenv.config();
-        this.app.use(cors({ origin: true, credentials: true }));
+        this.app.use(cors({ origin: process.env.FRONTEND_URL, credentials: true }));
         this.app.use(express.json({ limit: '20mb' }));
         this.app.use(express.urlencoded({ extended: true, limit: '20mb' }));
         this.app.use(bodyParser.json({ limit: "20mb" }));
         this.app.use(bodyParser.urlencoded({ limit: "20mb", extended: true }));
         this.app.use(express.static(join(__dirname, '../public')));
     }
-    
+
     configCloudinary(): void {
         v2.config({
-          cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
-          api_key: process.env.CLOUDINARY_API_KEY,
-          api_secret: process.env.CLOUDINARY_API_SECRET
+            cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+            api_key: process.env.CLOUDINARY_API_KEY,
+            api_secret: process.env.CLOUDINARY_API_SECRET
         });
-      }
+    }
 
     routes(): void {
         this.app.use('/api/auth', authRoutes);
